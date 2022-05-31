@@ -17,10 +17,10 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/redirect';
 
     /**
-     * Define your route model bindings, pattern filters, and other route configuration.
+     * Define your route model bindings, pattern fi lters, and other route configuration.
      *
      * @return void
      */
