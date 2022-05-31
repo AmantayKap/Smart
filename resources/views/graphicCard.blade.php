@@ -57,7 +57,7 @@
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dr">
     <div class="container">
-        <a class="navbar-brand" href="main.html">Smart</a>
+        <a class="navbar-brand" href="{{url('/home')}}}">Smart</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -79,13 +79,25 @@
                     </ul>
                 </li>
             </ul>
-
             <a class="d-flex cour ms-3 " href="{{url('/login')}}">
                 <svg fill="white" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                 </svg>
                 <p class="ms-2 text-white">
-                        </p>
+                    @if (Route::has('login'))
+
+                        @auth
+                            <a class="nav-link" href="{{url('/redirect') }}">
+                                {{ Auth::user()->name }}
+                            </a>
+                        @else
+                            <a class="nav-link" href="{{route('login') }}">
+                                {{ __('Login') }}
+                            </a>
+                        @endauth
+
+                    @endif
+                </p>
             </a>
             <div class="d-flex cour ms-3" id="carticon">
                 <svg fill="white"xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
@@ -114,7 +126,6 @@
                 </div>
 
             </div>
-            </li>
         </div>
     </div>
 </nav>
@@ -478,7 +489,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <div class="footer_copy">

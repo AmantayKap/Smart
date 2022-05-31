@@ -3,21 +3,16 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
-
-Route::get('/', 'App\Http\Controllers\PageController@index');
-
-Route::get('/', function () {
-    return view('main');
-});
-
+use App\Http\Controllers\AdminController;
 Route::get('/graph', function () {
     return view('graphicCard');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('graphicCard');
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/redirect',[HomeController::class, 'redirect']);
 
-
+Route::get('/product', [AdminController::class, 'product']);
+Route::post('/uploadproduct', [AdminController::class, 'uploadproduct']);
