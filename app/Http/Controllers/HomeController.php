@@ -16,14 +16,19 @@ class HomeController extends Controller{
        if ($usertype=="1"){
            return view('admin.home');
        } else{
+<<<<<<< HEAD
            $data = product::paginate(2);
            $user=auth()->user();
            return view('user.home');
 
+=======
+           return view('user.home');
+>>>>>>> 820417d8299bee9fd380e968fd6704573fb3e3c9
        }
    }
 
    public function index(){
+<<<<<<< HEAD
        $data = product::paginate(2);
        return view('graphicCard', compact('data'));
    }
@@ -89,4 +94,8 @@ class HomeController extends Controller{
        DB::table('carts')->where('phone', $phone)->delete();
        return redirect()->back();
     }
+=======
+       return view('main');
+   }
+>>>>>>> 820417d8299bee9fd380e968fd6704573fb3e3c9
 }

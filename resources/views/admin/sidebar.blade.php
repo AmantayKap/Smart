@@ -2,18 +2,32 @@
     <!-- partial:partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+<<<<<<< HEAD
             <a class="sidebar-brand brand-logo" style="color:white; text-decoration: none;" href="index.html">Smart</a>
             <a class="sidebar-brand brand-logo-mini" style="color:white;" href="index.html">Smart</a>
+=======
+            <a class="sidebar-brand brand-logo" href="index.html"><img src="admin/assets/images/logo.svg" alt="logo" /></a>
+            <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="admin/assets/images/logo-mini.svg" alt="logo" /></a>
+>>>>>>> 820417d8299bee9fd380e968fd6704573fb3e3c9
         </div>
         <ul class="nav">
             <li class="nav-item profile">
                 <div class="profile-desc">
                     <div class="profile-pic">
                         <div class="count-indicator">
+<<<<<<< HEAD
                         </div>
                         <div class="profile-name">
                             <h5 class="mb-0 font-weight-normal">Kapyshev Amantay</h5>
                             <span>Admin</span>
+=======
+                            <img class="img-xs rounded-circle " src="admin/assets/images/faces/face15.jpg" alt="">
+                            <span class="count bg-success"></span>
+                        </div>
+                        <div class="profile-name">
+                            <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
+                            <span>Gold Member</span>
+>>>>>>> 820417d8299bee9fd380e968fd6704573fb3e3c9
                         </div>
                     </div>
                     <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -56,12 +70,24 @@
             <li class="nav-item nav-category">
                 <span class="nav-link">Navigation</span>
             </li>
+<<<<<<< HEAD
+=======
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="index.html">
+              <span class="menu-icon">
+                <i class="mdi mdi-speedometer"></i>
+              </span>
+                    <span class="menu-title">Dashboard</span>
+                </a>
+            </li>
+>>>>>>> 820417d8299bee9fd380e968fd6704573fb3e3c9
 
             <li class="nav-item menu-items">
                 <a class="nav-link" href="{{url('product')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-file-document-box"></i>
               </span>
+<<<<<<< HEAD
                     <span class="menu-title">Add Product</span>
                 </a>
             </li>
@@ -80,6 +106,9 @@
                 <i class="mdi mdi-file-document-box"></i>
               </span>
                     <span class="menu-title">Orders</span>
+=======
+                    <span class="menu-title">Product</span>
+>>>>>>> 820417d8299bee9fd380e968fd6704573fb3e3c9
                 </a>
             </li>
         </ul>

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+<<<<<<< HEAD
 use App\Models\order;
+=======
+>>>>>>> 820417d8299bee9fd380e968fd6704573fb3e3c9
 class AdminController extends Controller
 {
     public function product(){
@@ -26,6 +29,7 @@ class AdminController extends Controller
         $data->save();
         return redirect()->back()->with('message', 'Product Added Successfully');
     }
+<<<<<<< HEAD
 
     public function showproduct(){
         $data = product::all();
@@ -69,4 +73,6 @@ class AdminController extends Controller
 
         return redirect()-> back();
     }
+=======
+>>>>>>> 820417d8299bee9fd380e968fd6704573fb3e3c9
 }

@@ -18,7 +18,11 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('price')->nullable();
             $table->string('description')->nullable();
+<<<<<<< HEAD
             $table->string('quantity')->default(1);
+=======
+            $table->string('quantity')->nullable();
+>>>>>>> 820417d8299bee9fd380e968fd6704573fb3e3c9
             $table->string('image')->nullable();
             $table->timestamps();
         });

@@ -4,7 +4,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<<<<<<< HEAD
     <title>Admin</title>
+=======
+    <title>Corona Admin</title>
+>>>>>>> 820417d8299bee9fd380e968fd6704573fb3e3c9
     <!-- plugins:css -->
     <link rel="stylesheet" href="admin/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="admin/assets/vendors/css/vendor.bundle.base.css">
