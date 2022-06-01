@@ -18,8 +18,7 @@ class HomeController extends Controller{
        } else{
            $data = product::paginate(2);
            $user=auth()->user();
-           $count=cart::where('phone',$user->phone)->count();
-           return view('graphicCard', compact('data','count'));
+           return view('user.home');
 
        }
    }

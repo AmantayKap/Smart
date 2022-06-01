@@ -39,7 +39,23 @@
                 <td>Quantity</td>
                 <td>Status</td>
             </tr>
+            @foreach($order as $orders)
+            <tr align="center">
+                <td>{{$orders->name}}</td>
+                <td>{{$orders->phone}}</td>
+                <td>{{$orders->address}}</td>
+                <td>{{$orders->product_name}}</td>
+                <td>{{$orders->price}}</td>
+                <td>{{$orders->quantity}}</td>
+                <td>{{$orders->status}}</td>
+                <td>
+                    <a class="btn btn-success" href="{{url('updatestatus', $orders->id)}}">Done</a>
+                </td>
+            </tr>
+            @endforeach
+
         </table>
+
 
     </div>
 </div>

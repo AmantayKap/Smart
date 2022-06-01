@@ -25,7 +25,6 @@
 <body>
 @include('admin.sidebar')
 @include('admin.navbar')
-@include('admin.body')
             <!-- partial -->
         </div>
         <!-- main-panel ends -->

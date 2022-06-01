@@ -87,7 +87,7 @@
                     @if (Route::has('login'))
 
                         @auth
-                            <a class="nav-link" href="{{url('/redirect') }}">
+                            <a class="nav-link" href="{{url('/home') }}">
                                 {{ Auth::user()->name }}
                             </a>
 
@@ -186,7 +186,6 @@
                     <div class="d-flex justify-content-between">
                         <form action="{{url('addcart',$product->id)}}" method="POST">
                             @csrf
-                            <input type="number" value="1" min="1" class="form-control" style="width: 90px; margin-bottom: 5px;">
                             <input  class="btn btn-success shop-item-button" type="submit" value="Add Cart">
                         </form>
                         <p class=" price mt-2 m-2 shop-item-price">{{$product-> price}}</p>
