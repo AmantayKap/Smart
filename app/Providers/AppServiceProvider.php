@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\PageController;
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Pagination\paginator;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+       Paginator::useBootstrap();
     }
 }

@@ -57,7 +57,7 @@
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dr">
     <div class="container">
-        <a class="navbar-brand" href="main.html">Smart</a>
+        <a class="navbar-brand" href="{{url('/home')}}}">Smart</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -79,20 +79,34 @@
                     </ul>
                 </li>
             </ul>
-
-            <a class="d-flex cour ms-3 " href="{{url('/login')}}">
+            <div class="d-flex cour ms-3 " href="{{url('/login')}}">
                 <svg fill="white" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                 </svg>
                 <p class="ms-2 text-white">
-                        </p>
+                    @if (Route::has('login'))
+
+                        @auth
+                            <a class="nav-link" href="{{url('/redirect') }}">
+                                {{ Auth::user()->name }}
+                            </a>
+
+                <div class="d-flex cour ms-3" id="carticon">
+                    <svg fill="white"xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                    </svg>
+                    <a  href="{{url('/showcart')}}" class=" ms-2 text-white cart--price">Cart</a>
+                </div>
+                        @else
+                            <a class="nav-link" href="{{route('login') }}">
+                                {{ __('Login') }}
+                            </a>
+                        @endauth
+
+                    @endif
+                </p>
             </a>
-            <div class="d-flex cour ms-3" id="carticon">
-                <svg fill="white"xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                </svg>
-                <p class=" ms-2 text-white cart--price">$0</p>
-            </div>
+
             <div class="cart">
                 <div class="ui">
                     <h2 >CART</h2>
@@ -114,7 +128,6 @@
                 </div>
 
             </div>
-            </li>
         </div>
     </div>
 </nav>
@@ -133,14 +146,24 @@
 
 
 <div class="center_text" id="assa">Assortiment</div>
+
 <div class="container">
+<div>
+<form action="{{url('search')}}" method="get" class="form-inline">
+    @csrf
+    <input class="form-control" type="search" name="search" placeholder="search">
+    <input type="submit" value="Search" class="btn btn-success">
+</form>
+</div>
+    @foreach($data as $product)
+
     <div class="row gy-3 mb-5">
         <div class="col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center">
             <div class="card mb-3" style="width: 18rem;">
                 <div id="carouselPic" class="carousel slide" data-bs-interval="false">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="img/vid10.jpg" class="shop-item-image card-img-top">
+                            <img src="productimage/{{$product->image}}" class="shop-item-image card-img-top">
                         </div>
                         <div class="carousel-item">
                             <img src="img/vid10.1.jpg" class="card-img-top">
@@ -158,272 +181,27 @@
                     </button>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title shop-item-title">Gigabyte GTX 1660 Ti</h5>
-                    <p class="card-text mb-0">Video memory frequency, MHz: 12000</p>
-                    <p class="card-text mb-0">Type of Video Memory: GDDR6</p>
-                    <p class="card-text">Video memory capacity: 6GB</p>
+                    <h5 class="card-title shop-item-title">{{$product-> title}}</h5>
+                    <p class="card-text mb-0">{{$product-> description}}</p>
                     <div class="d-flex justify-content-between">
-                        <button onclick="Music();" class="btn btn-success shop-item-button" id="music">Add to cart</button>
-                        <p class=" price mt-2 m-2 shop-item-price">1000$</p>
+                        <form action="{{url('addcart',$product->id)}}" method="POST">
+                            @csrf
+                            <input type="number" value="1" min="1" class="form-control" style="width: 90px; margin-bottom: 5px;">
+                            <input  class="btn btn-success shop-item-button" type="submit" value="Add Cart">
+                        </form>
+                        <p class=" price mt-2 m-2 shop-item-price">{{$product-> price}}</p>
                     </div>
 
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <div id="carouselPic1" class="carousel slide" data-bs-interval="false">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="img/graph1.jpg" class="shop-item-image card-img-top">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/graph1.1.jpg" class="card-img-top">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/graph1.2.jpg" class="card-img-top">
-                        </div>
-                    </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselPic1" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselPic1" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title shop-item-title">Gigabyte RTX 3060 Ti</h5>
-                    <p class="card-text mb-0">Video memory frequency, MHz: 14000</p>
-                    <p class="card-text mb-0">Type of Video Memory: GDDR6</p>
-                    <p class="card-text">Video memory capacity: 8GB</p>
-                    <div class="d-flex justify-content-between">
-                        <a onclick="Music();" class="btn btn-success shop-item-button" id="music">Add to cart</a>
-                        <p class=" price mt-2 m-2 shop-item-price">1500$</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <div id="carouselPic2" class="carousel slide" data-bs-interval="false">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="img/graph2.1.jpg" class="shop-item-image card-img-top">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/graph2.jpg" class="card-img-top">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/graph2.2.jpg" class="card-img-top">
-                        </div>
-                    </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselPic2" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselPic2" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title shop-item-title">Palit RTX 3070 JetStream</h5>
-                    <p class="card-text mb-0">Video memory frequency, MHz: 14000</p>
-                    <p class="card-text mb-0">Type of Video Memory: GDDR6</p>
-                    <p class="card-text">Video memory capacity: 8GB</p>
-                    <div class="d-flex justify-content-between">
-                        <a onclick="Music();" class="btn btn-success shop-item-button" id="music">Add to cart</a>
-                        <p class=" price mt-2 m-2 shop-item-price">1600$</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <div id="carouselPic3" class="carousel slide" data-bs-interval="false">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="img/graph3.jpg" class="shop-item-image card-img-top">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/graph3.1.jpg" class="card-img-top">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/graph3.2.jpg" class="card-img-top">
-                        </div>
-                    </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselPic3" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselPic3" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title shop-item-title">MSI RX 6900 XT Gaming X</h5>
-                    <p class="card-text mb-0">Video memory frequency, MHz: 16000</p>
-                    <p class="card-text mb-0">Type of Video Memory: GDDR6</p>
-                    <p class="card-text">Video memory capacity: 16GB</p>
-                    <div class="d-flex justify-content-between">
-                        <a onclick="Music();" class="btn btn-success shop-item-button" id="music">Add to cart</a>
-                        <p class=" price mt-2 m-2 shop-item-price">3000$</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <div id="carouselPic4" class="carousel slide" data-bs-interval="false">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="img/graph4.jpg" class=" shop-item-image card-img-top">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/graph4.1.jpg" class="card-img-top">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/graph4.2.jpg" class="card-img-top">
-                        </div>
-                    </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselPic4" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselPic4" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title shop-item-title">ZOTAC RTX 3070 AMP</h5>
-                    <p class="card-text mb-0">Video memory frequency, MHz: 14000</p>
-                    <p class="card-text mb-0">Type of Video Memory: GDDR6</p>
-                    <p class="card-text">Video memory capacity: 8GB</p>
-                    <div class="d-flex justify-content-between">
-                        <a onclick="Music();" class="btn btn-success shop-item-button" id="music">Add to cart</a>
-                        <p class=" price mt-2 m-2 shop-item-price">2100$</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <div id="carouselPic5" class="carousel slide" data-bs-interval="false">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="img/graph5.jpg" class="shop-item-image card-img-top">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/graph5.1.jpg" class="card-img-top">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/graph5.2.jpg" class="card-img-top">
-                        </div>
-                    </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselPic5" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselPic5" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title shop-item-title">Palit RTX 3080 Gaming Pro</h5>
-                    <p class="card-text mb-0">Video memory frequency, MHz: 19000</p>
-                    <p class="card-text mb-0">Type of Video Memory: GDDR6X</p>
-                    <p class="card-text">Video memory capacity: 10GB</p>
-                    <div class="d-flex justify-content-between">
-                        <a onclick="Music();" class="btn btn-success shop-item-button"  id="music">Add to cart</a>
-                        <p class=" price mt-2 m-2 shop-item-price">1700$</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <div id="carouselPic6" class="carousel slide" data-bs-interval="false">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="shop-item-image card-img-top" id="shop-item-image" src="img/graph6.jpg" >
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/graph6.1.jpg" class="card-img-top">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/graph6.2.jpg" class="card-img-top">
-                        </div>
-                    </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselPic6" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselPic6" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title shop-item-title"> Gigabyte RTX 3080 Aorus</h5>
-                    <p class="card-text mb-0">Video memory frequency, MHz: 19000</p>
-                    <p class="card-text mb-0">Type of Video Memory: GDDR6X</p>
-                    <p class="card-text">Video memory capacity: 10GB</p>
-                    <div class="d-flex justify-content-between">
-                        <a onclick="Music();" class="btn btn-success shop-item-button" id="music">Add to cart</a>
-                        <p class=" price mt-2 m-2 shop-item-price">1800$</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center">
-            <div class="card" style="width: 18rem;">
-                <div id="carouselPic7" class="carousel slide" data-bs-interval="false">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="img/graph7.jpg"  class="shop-item-image card-img-top">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/graph7.1.jpg" class="card-img-top">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="img/graph7.2.jpg" class="card-img-top">
-                        </div>
-                    </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselPic7" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselPic7" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title shop-item-title">ASUS RTX 3070 ROG</h5>
-                    <p class="card-text mb-0">Video memory frequency, MHz: 14000</p>
-                    <p class="card-text mb-0">Type of Video Memory: GDDR6</p>
-                    <p class="card-text">Video memory capacity: 8GB</p>
-                    <div class="d-flex justify-content-between">
-                        <a onclick="Music();" class="btn btn-success shop-item-button" id="music">Add to cart</a>
-                        <p class=" price mt-2 m-2 shop-item-price">1500$</p>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+        @endforeach
 </div>
+@if(method_exists($data,'link'))
+{!! $data->links() !!}
+@endif
 
 <footer class="footer">
     <div class="container">
@@ -478,7 +256,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <div class="footer_copy">
